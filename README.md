@@ -1,4 +1,4 @@
-# Digital Twin of Online Meeting Notetaker
+# Stackathon
 
 ![Copy of Copy of Living lab (1)](https://user-images.githubusercontent.com/68909712/95673951-9ff70f00-0bca-11eb-8680-43e62aeb23f5.jpg)
 
