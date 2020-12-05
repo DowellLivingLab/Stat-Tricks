@@ -35,27 +35,24 @@ This process continues for 15 weeks.
   - Participants have to sign a non disclosure agreement.
   - Team size - Minimum 2 members
   - Communicative Language - English (Mandatory)
+  
+  
+### Non Eligibility Criteria
 
+  - Workers / employees / exclusive freelancers of any company
+  - Employees, freelancers or interns from DoWell
 
-###### Header 6
+## REGISTRATION RULES TO HACKATHON 
 
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
+*   Last Day of Registration is Friday of each week for participating in the same week.
+*   No payment required for registration and participation.
+*   Participants wishing to sign up for the hackathon must complete the online Registration Form. All Participants in submitting their registration accept the event      regulations and grant consent for the handling of their personal information by Dowell
+*   Teams have to register weekly for the hackathon. The registration link will be open throughout the duration of hackathon. 
+*   Participants guarantee that the personal information provided upon registration is true and accurate, with no liability being attributed to DoWell in the event of any falsification and/or inaccuracy. Furthermore, inaccurate and/or falsified information can result in disqualification of the participant from the event.
+*   Applications will be screened as per the criteria.
+*   Participants need to have proper internet connection along with the needed hardware and software support.
+*   Amendments in the team are allowed without violating the eligibility criteria.
+*   Team leader have to register for the event.
 
 ### And an ordered list:
 
