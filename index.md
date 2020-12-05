@@ -1,24 +1,13 @@
----
-layout: default
----
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+# AIM OF THE CONTEST:
 
-[Link to another page](./another-page.html).
+The aim of this “Stat-Tricks” is to let your imagination guide you by pushing the boundaries of your statistical knowledge and skills to get a combination of imputation methods for building Time series prediction models. 
 
-There should be whitespace between paragraphs.
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+# DESCRIPTION:
 
-# Header 1
+Recently, DoWell Research got a school principal as a client who, to check the General Knowledge of the school students, took a test everyday. The test was based on a particular topic/ domain each week, and he continued it for 15 weeks. He wanted to know about the behavioral and learning patterns of students. In this data, the names of the students have been replaced by numbers, where each row represents the marks scored by students out of 10. The data contains some missing values for days when a student was absent.
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
-
-## Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
 
 ### Header 3
 
