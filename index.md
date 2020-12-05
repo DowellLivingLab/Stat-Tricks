@@ -54,28 +54,22 @@ This process continues for 15 weeks.
 *   Amendments in the team are allowed without violating the eligibility criteria.
 *   Team leader have to register for the event.
 
-### And an ordered list:
+## JUDGMENT RULES FOR HACKATHON
 
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
+*   This is a contributory hackathon.
+*   A team's contribution will be judged on the basis of their participation and quality of contribution.
+*   The organizer’s judgement is final.
+*   Refer the calculation template for more clarity on the judgement method.
+*   A team can discontinue and join at any stage of the hackathon, weekly judgement will be done.
+*   Prizes to be awarded weekly based on the performance of the team in each task and an overall performance prize at the end of hackathon.
 
-### And a nested list:
+## REWARD FOR THE HACKATHON :-
 
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
+*   The prize for the winning team every week will be ___50_dollars___.
+*   The overall performance prize at the completion of the hackathon after 15 weeks will be _100 dollars_________.
+*   Participation certificates per participant in a team will be given at the end of the completion of the 15 weeks hackathon.
+*   Participants shall acknowledge and agree that Dowell shall have no liability whatsoever on how the prizes will be split up between team members.
+*   Winning certificates for winning teams
 
 ### Small image
 
