@@ -71,9 +71,20 @@ This process continues for 15 weeks.
 *   Participants shall acknowledge and agree that Dowell shall have no liability whatsoever on how the prizes will be split up between team members.
 *   Winning certificates for winning teams
 
-### Small image
+## INTELLECTUAL PROPERTY RIGHTS 
 
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
+Intellectual property rights, guarantees, release of responsibility and assignment of intellectual and moral rights, by participating in the Hackathon and accepting the Terms and Conditions, each Participant hereby:
+
+*   Declares and warrants that the Product and Product Content is an original work and in no way violates, in whole or in part, the Intellectual or Property Rights of others and releases Dowell from any and all responsibility, liability, or request for compensation for damages that should be made by any third party;
+*   Agrees with effect from creation and irrespective of payment to irrevocably transfer and fully assign: a) all Intellectual Property Rights together with all right, title, ownership and/or interest; and b) any and all Moral Rights in Product and Product Content to DoWell. No additional consideration shall be payable to you or any third party by DoWell in respect of such transfer of Intellectual Property Rights.
+*   Agrees to reasonably assist Dowell in registering such rights of ownership and Intellectual Property Rights as required by law (e.g. filing of patents and other such registrations as appropriate); and;
+*   Agrees to indemnify Dowell (its representatives, employees, assignees) and to hold it harmless against any loss, liability, damage or expense suffered or incurred as a result of breach of this clause.
+
+
+Intellectual Property Rights shall include,without limitation,any ideas,concepts, know-how, data processing techniques, copyrights, patents, designs, inventions, trade secrets, software, source code and documentation, notes, memorandum and any other intellectual property rights attaching to Dowell and Dowell Content created, invented and/or developed by you and/or alongside other Participants pursuant to participation in Dowell Hackathon.
+
+This repository is owned by DoWell and is under GPL V3.0 and Apache license.
+
 
 ### Large image
 
