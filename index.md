@@ -1,30 +1,20 @@
 
-# AIM OF THE CONTEST:
+## AIM OF THE CONTEST:
 
 The aim of this “Stat-Tricks” is to let your imagination guide you by pushing the boundaries of your statistical knowledge and skills to get a combination of imputation methods for building Time series prediction models. 
 
 
-# DESCRIPTION:
+## DESCRIPTION:
 
 Recently, DoWell Research got a school principal as a client who, to check the General Knowledge of the school students, took a test everyday. The test was based on a particular topic/ domain each week, and he continued it for 15 weeks. He wanted to know about the behavioral and learning patterns of students. In this data, the names of the students have been replaced by numbers, where each row represents the marks scored by students out of 10. The data contains some missing values for days when a student was absent.
 
 
-### Header 3
+## TASK:
 
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
-}
-```
+A dataset of 750 to 1000 students would be given on a weekly basis. The provided data might contain missing values as the students had remained absent for that day. The task of the hackathon is to fill in the missing values using appropriate imputation methods without removing the observation and build a predictive model for predicting the marks of students for the next weeks.
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
+This process continues for 15 weeks.  
+
 
 #### Header 4
 
