@@ -86,28 +86,31 @@ Intellectual Property Rights shall include,without limitation,any ideas,concepts
 This repository is owned by DoWell and is under GPL V3.0 and Apache license.
 
 
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
+## CODE OF CONDUCT 
 
 
-### Definition lists can be used with HTML syntax.
+By participating in any Dowell Hackathon event,you agree to abide by the following code of conduct.
 
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
+*   Participants shall not violate any law, rules and regulation or third party rights.
+*   By submitting an Entry, you warrant and represent:
+      (a) that it is your (or your team’s) original work; 
+      (b) that it has not been previously published, sold or submitted in any other competition, promotion, or contest; 
+      (c) that it has not won previous awards; and 
+      (d) that it does not infringe upon the copyrights, trademarks, rights of privacy, publicity or other intellectual property or other rights of any person or entity; 
+      (e) that if any participant or participating team found infringing or violating any laws, rules mentioned herein above, shall be held liable for the compensation and shall also be disqualified.
 
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
+*   Participants must  treat all other participants with the utmost respect. All the participants are requested to act kindly, behave professionally, and do not insult or put down other attendees. Remember that harassment and racist, sexist, or exclusionary jokes are not appropriate for this event. If at any point you see a fellow hacker being harassed, please talk to the nearest hackathon organizer.
 
-```
-The final element.
-```
+*   Participants must treat our sponsors, organizers, and judges with the utmost respect.
+*   Failure to comply with the above-stated Rules and Code of Conduct may result in the participating team's disqualification.
+
+## MISCELLANEOUS 
+
+* Dowell may contact any of the participants at any point in time for more information and to discuss potential forms of collaboration.
+* At any time, at the sole and absolute discretion of Dowell, Dowell shall be entitled to disqualify a Participant and/or Team in the event of failure to meet relevant * eligibility criteria or any other violation or suspected violation of these Terms and Conditions.
+* These Terms and Conditions, together with any Hackathon registration forms, represent the participant’s entire agreement with Dowell with respect to the Hackathon. These terms cannot be modified or changed except with the written agreement of Dowell.
+* All terms and rules are subject to change at Dowell, event coordinators’ or judges’ discretion. Participants will be informed of such changes if deemed necessary.
+* Subject to the rights, these terms and conditions and its interpretation and operation are governed solely by Singapore Law. That those in the Singapore or Foreign  Country, agree to submit to the exclusive jurisdiction of the Singapore tribunals and courts.
+
+
+
