@@ -29,8 +29,12 @@ This process continues for 15 weeks.
 
   - Age limit-  Minimum 18 years
   - Communicative Language - English (Mandatory)
-
-
+  - Software and Hardware- Stable internet connection with a working PC/Desktop is a must
+  - Students / Job Seekers / non exclusive freelancers
+  - Nationality- Any country (Law of Singapore shall be applicable to all the participants irrespective of their nationality.)
+  - Participants have to sign a non disclosure agreement.
+  - Team size - Minimum 2 members
+  - Communicative Language - English (Mandatory)
 
 
 ###### Header 6
