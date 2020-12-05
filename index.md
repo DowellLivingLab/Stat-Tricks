@@ -23,11 +23,15 @@ This process continues for 15 weeks.
 *   Contact: DoWell Team Organizer
 *   Email: 
 
-##### Header 5
+## PARTICIPATION RULES OF HACKATHON 
 
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
+### Eligibility Criteria
+
+  - Age limit-  Minimum 18 years
+  - Communicative Language - English (Mandatory)
+
+
+
 
 ###### Header 6
 
