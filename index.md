@@ -16,11 +16,12 @@ A dataset of 750 to 1000 students would be given on a weekly basis. The provided
 This process continues for 15 weeks.  
 
 
-#### Header 4
+## DETAILS OF THE HACKATHON 
 
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
+*   Location:  Online (GitHub)
+*   Duration:15 December,2020   
+*   Contact: DoWell Team Organizer
+*   Email: 
 
 ##### Header 5
 
