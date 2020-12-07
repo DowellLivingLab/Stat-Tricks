@@ -3,3 +3,5 @@ description: Hackathon for Statisticians
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-architect
+logo: /assets/images/logo.png
+
