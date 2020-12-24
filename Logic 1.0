@@ -1,7 +1,9 @@
 #Logic for the ideation stage
 
 1. Start
+We have imported data in Python and we have checked how many missing values present in the data.
 2. Imputation process for missing values
+
 3. Predicting future values
 4. Quality process for imputation
 5. End
