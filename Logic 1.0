@@ -1,8 +1,45 @@
 #Logic for the ideation stage
 
 1. Start
+Firstly we had imported the data file containing all the marks of 1000 students along with the missing values in R.
+Then we used R to calculate how many of the values are actually missing.
+For this we loaded a package 'mice' which is quite useful in handling missing data.
+we used md.pattern(data) to find out total number of missing values, which came out as 687.
+R code:
+library(mice)
+md.pattern(data)
+summary(data)
+
 2. Imputation process for missing values
+then we used the mice function for the colums 2-6 as they had values to be imputed.
+We took a seed value of 500.
+using 'mice' and 'complete' we found the missing values and placed them at their orignal place.
+We stored our new dataset with all the values in the variable 'completed'.
+R code:
+impute<-mice(data[,2:6],seed = 500)
+print(impute)
+impute$imp$M
+completed<-complete(impute,1)
+View(completed)
+summary(completed)
+
+
 3. Predicting future values
+Our next task was to predict the future values using this week's data which we had just stored in the completed variable.
+We created a linear model for prediction as we did not have enough history for our data and any other model did not seem appropriate.
+we used 'lm' function to create a linear model.
+We had to make 5 models each having one continous respone variable and 4 predictor variables.
+After constructing the models we used 'predict' function to predict the data of each day of 1000 students.
+After succesfully predicting the next week's data we used cbind and stored in pr1 which is now our predicted values for week 2.
+R code:
+model<-lm(completed$F~completed$M+completed$T+completed$W+completed$TH,data=completed)
+model$coefficients
+fri<-predict(model,completed)
+View(fri)
+pr1<-cbind(mon,tue,wed,thur,fri)
+View(pr1)
+
 4. Quality process for imputation
+
 5. End
 
