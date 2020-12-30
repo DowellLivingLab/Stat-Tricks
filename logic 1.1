@@ -42,3 +42,18 @@ data.isnull().sum()
 data.info()#checking for null values too.
 
 we have observed that the data type is of object that should we int form so now we will convert the datatype in int
+
+# so we have converted the data into float 
+for i in data.columns:
+  data[i] = data[i].astype(float)
+  
+after converting the data type we deals with missing values 
+
+we use mean method to deal with missing values
+just find the mean of each row and fill that value at place of missing values
+we use mean method to deal with missing values because the number of missing observations is low.
+as we are dealing with each and every row:
+
+mean = round(data.mean(axis=1))# find the mean of each row
+for i,col in enumerate(data):# filling up missing values using the mean of that particular row
+    data.iloc[:, i] = data.iloc[:,i].fillna(mean)
