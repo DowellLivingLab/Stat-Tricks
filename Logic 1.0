@@ -1,17 +1,12 @@
 #Logic for the ideation stage
 
 1. Start
-We have imported data in Python and we have checked how many missing values present in the data.
-There are 687 missing values in the dataset
+
 
 2. Imputation process for missing values
-Imputation by mean method
-We use mean method for imputation, because  data is interval scale data and data is less variable for each student.
 
-# Imputation by mean method
-m=round(df.mean(axis=1))
-for i,col in enumerate(df):
-      df.iloc[:, i] = df.iloc[:,i].fillna(m)
+
+
  
 print(df)
 
