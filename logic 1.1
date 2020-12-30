@@ -1,2 +1,44 @@
 
-week 2
+## week 2 
+
+#reading the data
+df = pd.read_excel("/content/drive/MyDrive/do well/week 2/week_2_data.xlsx")
+
+
+df.head()
+# to check the frist 5 rows of the dataset
+
+df.shape
+# to check the shape of the dataset
+
+#to describe the data
+df.describe()
+
+#checking the names of the columns
+df.columns
+
+we found that the columns names is not in correct form so we rename the column names
+
+#to rename the names of columns
+
+data = df.rename(columns = {'Weeks': "Weeks", 'W1' : "W1M", 'Unnamed: 2' : "W1T", 'Unnamed: 3': "W1W", 'Unnamed: 4': "W1Th", 'Unnamed: 5':"W1F",
+       'W2': "W2M", 'Unnamed: 7':'W2T', 'Unnamed: 8':"W2W", 'Unnamed: 9':"W2Th", 'Unnamed: 10': "W2F"})
+       
+## drop the unusable 
+data =  data.drop("Weeks", axis = 1 ) # dropping the column ("Weeks")
+data = data.drop([0]) # droping the first row (days)
+
+## inspecting the modified data
+dat.head()
+
+data.to_csv("/content/drive/MyDrive/do well/week 2/week_2_data.csv") # saving it to csv form
+
+data.describe() # #Display some descriptive statistics for the  columns
+
+# how many missing values present in the data?
+data.isnull().sum()
+
+#information of the data set
+data.info()#checking for null values too.
+
+we have observed that the data type is of object that should we int form so now we will convert the datatype in int
