@@ -1,5 +1,6 @@
 
 ## week 2 
+Date 30/dec/2020
 
 #reading the data
 df = pd.read_excel("/content/drive/MyDrive/do well/week 2/week_2_data.xlsx")
@@ -47,6 +48,7 @@ we have observed that the data type is of object that should we int form so now 
 for i in data.columns:
   data[i] = data[i].astype(float)
   
+  
 after converting the data type we deals with missing values 
 
 we use mean method to deal with missing values
@@ -57,3 +59,37 @@ as we are dealing with each and every row:
 mean = round(data.mean(axis=1))# find the mean of each row
 for i,col in enumerate(data):# filling up missing values using the mean of that particular row
     data.iloc[:, i] = data.iloc[:,i].fillna(mean)
+
+
+#day2(thusday)
+date 31/dec/2020
+
+I have observed that most of the data is filled sequentially
+
+    for a particular week and row
+
+    it is filled like that
+        2,3,4,5,6
+        3,3,4,4,5,5
+        2,2,3,4,4
+
+    and is filled in asscending order for the particular week.
+
+    so we will deal with imputing missing values according to that.
+
+   #After observing the data we find that the missing number of data points to include closer to the missing value
+    so we use KNN imputer
+# import the KNNimputer class 
+from sklearn.impute import KNNImputer 
+# create an object for KNNImputer 
+imputer = KNNImputer(n_neighbors=2) 
+After_imputation = imputer.fit_transform(data_week_2) 
+
+
+we have seperated the week twoo dat to fill the null values and then join the data of both the weeks week1 and week2 
+
+data_imputed = data_week_1.join(data_week_2_imputed)
+data_imputed.head()
+ and this imputes with the best reesult of our data 
+ 
+ we are procceding for furthur tasks
