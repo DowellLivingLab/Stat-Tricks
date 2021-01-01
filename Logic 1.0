@@ -1,17 +1,44 @@
 #Logic for the ideation stage
 
 1. Start
-
+Firstly, in order to find the distribution of the data given to us, we have used R to plot histogram of the marks of each student using their mean computed through excel.
+We have used histogram because it gives a better picture of skewness present in the data. The data shows a negatively skewed curve.
+The code is:
+>install.packages("ggplot2")     #package for plotting graphs
+>mydata<-read.csv("Bookk2.csv")  #for reading the excel sheet converted csv file uploaded on R cloud
+>hist(mydata$mean)
 
 2. Imputation process for missing values
-
-
-
- 
-print(df)
+Imputation for missing values has been done using excel by calculating mean value of marks of each student and replacing the missing value in each row by the same.
+Mean imputation has been chosen over median and mode imputation because mean is considered to be the ideal measure of central tendency. For checking the accuracy 
+of mean imputation, we have calculated root mean squared error which comes out to be leastt of mean imputed values when compared with median imputed values.
 
 3. Predicting future values
+For prediction of future values or next week's marks, multiple linear regression model technique has been used on R. The code is:
+> file<-read.csv("myfile.csv")    #for reading the excel sheet converted csv file uploaded on R cloud
+> head(file)     #file has 1000 observations of 5 variables (week 2's marks of each student of all 5 days)
+Since we have multiple target variables (5 target variables representing each day of the week 3), linear regression can only be applied by making 5 different models 
+corresponding to each day of the week as linear regression works with single target variable only. So the code for making 5 multiple linear regression models (having
+one response and four predictor variables in each model) and predicting values using lm and predict function is as follows:
+> model1 <- lm(M~T+W+TH+F, data = file)
+> summary(model1)
+> model2 <- lm(T~M+W+TH+F, data = file)
+> summary(model2)
+> model3 <- lm(W~M+T+TH+F, data = file)
+> summary(model3)
+> model4 <- lm(TH~M+T+W+F, data = file)
+> summary(model4)
+> model5 <- lm(F~M+T+W+TH, data = file)
+> summary(model5)
+> pred1<-predict(model1,file)
+> pred2<-predict(model2,file)
+> pred3<-predict(model3,file)
+> pred4<-predict(model4,file)
+> pred5<-predict(model5,file)
 
-4. Quality process for imputation
+4. Quality process for prediction
+In order to check the model quality, we can observe the value of R square showing by the summary function used after making the model, which depicts the proportion
+of variation explained by each model from the true value of response variable. Higher the value of R square, higher the model accuracy level.
+
 5. End
 
