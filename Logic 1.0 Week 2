@@ -1,0 +1,18 @@
+#Logic for the ideation stage
+
+1. Start
+    Understanding the Distribution of the Data
+    Students score low in the first days and then score high at the end
+2. Imputation process for missing values
+    We tried Mean, Median, KNN, Iterative Imputer(MICE)
+    Compared each with Density plots and r2 score
+    Mice turns out to be best imputation method
+3. Predicting future values
+    Calculated slope and Y-intercept values from Week 1 and Week 2 data.
+    used formula (Slope*X + Y-Intercept) to predict Week 3 values
+4. Quality process for imputation
+    Density plots used to verify Imputation methods
+    r2 score used to verify Imputation method
+    Due to the Randomness present in the data, we got extremely low r2 score value.
+5. End
+
