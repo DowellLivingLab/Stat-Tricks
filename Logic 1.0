@@ -22,19 +22,44 @@ corresponding to each day of the week as linear regression works with single tar
 one response and four predictor variables in each model) and predicting values using lm and predict function is as follows:
 > model1 <- lm(M~T+W+TH+F, data = file)
 > summary(model1)
+#model1 is: M=-0.81636+0.39827*T+0.79768*W+(-0.12800)*TH+(-0.06082)*F
+#Multiple R-squared:  0.6806
 > model2 <- lm(T~M+W+TH+F, data = file)
 > summary(model2)
+#model2 is: T=-0.196468+0.123715*M+0.786066*W+0.015114*TH+(-0.000865)*F
+#Multiple R-squared:  0.8485
 > model3 <- lm(W~M+T+TH+F, data = file)
 > summary(model3)
+#model3 is: W=-0.07624+0.12808*M+0.40633*T+0.42317*TH+0.08975*F
+#Multiple R-squared:  0.9207
 > model4 <- lm(TH~M+T+W+F, data = file)
 > summary(model4)
+#model4 is: TH=0.99702+(-0.03309)*M+0.01258*T+0.68132*W+0.16823*F
+#Multiple R-squared:  0.8378
 > model5 <- lm(F~M+T+W+TH, data = file)
 > summary(model5)
+#model5 is: F=0.993876+(-0.051037)*M+(-0.002337)*T+0.469040*W+0.546029*TH
+#Multiple R-squared:  0.6514
 > pred1<-predict(model1,file)
+> head(predt)
+       1        2        3        4        5        6   #output for model1
+1.557105 4.767322 2.564235 1.557105 4.858557 4.129744 
 > pred2<-predict(model2,file)
+> head(predt2)
+       1        2        3        4        5        6   #output for model2
+2.360991 5.209698 3.593571 2.688372 5.236482 5.068444 
 > pred3<-predict(model3,file)
+> head(predt3)
+       1        2        3        4        5        6   #output for model3
+3.007101 5.768341 4.377954 3.325307 5.628578 5.456057 
 > pred4<-predict(model4,file)
+> head(predt4)
+       1        2        3        4        5        6   #output for model4
+3.860881 6.152218 4.616238 3.782144 5.883040 5.915448 
 > pred5<-predict(model5,file)
+> head(predt5)
+       1        2        3        4        5        6   #output for model5
+4.556225 6.819111 5.419315 4.460122 6.819111 6.698225 
 
 4. Quality process for prediction
 In order to check the model quality, we can observe the value of R square showing by the summary function used after making the model, which depicts the proportion
