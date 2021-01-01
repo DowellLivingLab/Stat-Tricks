@@ -1,16 +1,60 @@
 #Logic for the ideation stage
 
 1. Start
-
+Firstly we had imported the data file containing all the marks of 1000 students along with the missing values in R.
+Then we used R to calculate how many of the values are actually missing.
+For this we loaded a package 'mice' which is quite useful in handling missing data.
+we used md.pattern(data) to find out total number of missing values, which came out as 890.
+R code:
+library(mice)
+md.pattern(data)
+summary(data)
 
 2. Imputation process for missing values
-.
-
 # Imputation by mean method
+then we used the mice function for the colums 2-11 as they had values to be imputed.
+We took a seed value of 500.
+using 'mice' and 'complete' we found the missing values and placed them at their orignal place.
+We stored our new dataset with all the values in the variable 'completed'.
+R code:
+impute<-mice(week2[,2:11],seed = 500)
+print(impute)
+impute$imp$M
+completed<-complete(impute,1)
+View(completed)
+summary(completed)
 
 
 3. Predicting future values
+Our next task was to predict the future values using this week's data which we had just stored in the completed variable.
+We used machine learning to split the data into two sets training dataset and test dataset.(70:30 split)
+We have used rainforest package to predict our next week's data.
+After using rainforest function we used importance to find which variables affected which variables by how much.
+Then we predicted the data and have also showed the confusion matrix.
+R code:
+set.seed(20)
+id<-sample(2,nrow(completed),prob=c(0.7,0.3),replace = TRUE)
+train<-completed[id==1,]
+test<-completed[id==2,]
 
+completed$TH2<-as.factor(completed$TH2)
+train$TH2<-as.factor(train$TH2)
+test$TH2<-as.factor(test$TH2)
+
+library(randomForest)
+cf<-randomForest(TH2~.,data=train,ntree=300,proximity=T,importance=T)
+cf$predicted
+cf$importance
+importance(cf)
+varImpPlot(cf)
+
+p1<-predict(cf,train)
+confusionMatrix(p1,train$TH2)
+p2<-predict(cf,test)
+confusionMatrix(p2,test$TH2)
 4. Quality process for imputation
+We have checked the accuracy of our model by applying the confusion matrix function.
+For example for friday on week 2 we have and accuracy of 98.7% on training data and 88.71% on test data.
+
 5. End
 
