@@ -52,9 +52,14 @@ p1<-predict(cf,train)
 confusionMatrix(p1,train$TH2)
 p2<-predict(cf,test)
 confusionMatrix(p2,test$TH2)
+pred<-predict(cf,predicted$TH2)
+TH3<-as.numeric(pred)
+Week3<-cbind(M3,T3,W3,TH3,F3)
+
+
 4. Quality process for imputation
 We have checked the accuracy of our model by applying the confusion matrix function.
-For example for friday on week 2 we have and accuracy of 98.7% on training data and 88.71% on test data.
+For example for Thursday on week 2 we have and accuracy of 98.7% on training data and 88.71% on test data.
 
 5. End
 
