@@ -1,5 +1,5 @@
 
-![Copy of Copy of Living lab (1)](https://github.com/DowellLivingLab/Score-Card/blob/main/Stats-tricks.JPG?raw=true)
+![Copy of Copy of Living lab (1)](https://github.com/DowellLivingLab/scorecard-stattricks/blob/main/score%201.1.png?raw=true)
 
 ## License
 
