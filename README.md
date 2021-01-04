@@ -18,6 +18,7 @@ Youtube - https://www.youtube.com/watch?v=hdHEILXLazs
 
 Linkedin - https://www.linkedin.com/showcase/uxlivinglab/
 
+Github Page - https://dowelllivinglab.github.io/Stat-Tricks/
 
 
 
