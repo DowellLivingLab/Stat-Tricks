@@ -3,6 +3,9 @@
 
 The aim of this “Stat-Tricks” is to let your imagination guide you by pushing the boundaries of your statistical knowledge and skills to get a combination of imputation methods for building Time series prediction models. 
 
+![Copy of Copy of Living lab (1)](https://github.com/DowellLivingLab/scorecard-stattricks/blob/main/score%201.1.png?raw=true)
+
+
 
 ## DESCRIPTION:
 
