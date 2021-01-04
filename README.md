@@ -7,9 +7,9 @@ This repository is owned by DoWell and is under GPL V3.0 and Appache license.
 
 ## Follow this event in......
 
-Instagram - @uxlivinglabdowell - https://www.instagram.com/uxlivinglabteam/?hl=en
+Instagram - @uxlivinglabteam - https://www.instagram.com/uxlivinglabteam/?hl=en
 
-Twitter - @seeuser -  https://twitter.com/uxlivinglab
+Twitter - @uxlivinglab -  https://twitter.com/uxlivinglab
 
 Youtube - https://www.youtube.com/watch?v=hdHEILXLazs
 
