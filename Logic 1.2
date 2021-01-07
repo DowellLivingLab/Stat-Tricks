@@ -1,2 +1,41 @@
 week3
->place your code here<
+#Identifying distribution of data
+The very first task is to find the distribution of the given data. For that we have imported the data to RStudio and by using fitdistrplus package we tried to fit our data to any possible distribution. The code goes as follows:
+> myfile<-read.csv("file.csv")   #myfile contains 4114 observations of 1 variable (there are 886 missing values in week 3 data)
+> install.packages("ggplot2")    #installing required packages for visualization and distribution fitting 
+> install.packages("fitdistrplus")
+> plotdist(myfile$data, histo = TRUE, demp = TRUE)   #empirical density curve and cdf curve plot has been plotted showing negatively skewed distribution
+> descdist(myfile$data,boot=1000)    #Cullen and Frey graph has been plotted showing the type of distribution. Skewness and kurtosis value gets plotted on this graph
+Output:
+summary statistics
+------
+min:  1   max:  7 
+median:  5 
+mean:  4.687409   #mean is less than median showing negatively skewed distribution
+estimated sd:  1.711221 
+estimated skewness:  -0.3765928   #negative sign and magnitude being close to zero indicates that data is showing low level negative skewness 
+estimated kurtosis:  2.211002 
+From cullen and frey graph, it can be interpreted since bootstraped values(sanple values taken with replacement) lies very close to observed values suggesting that data does not conform to any possible distribution rather it is taken randomly. But since data shows low negative skewness of magnitude 0.376, we have tried to visualise how close our data fits the symmetrical distribution namely normal and uniform distribution. For this the code goes as follows:
+> fu<-fitdist(myfile$data,"unif")  #fitting data to uniform distribution
+> fn<-fitdist(myfile$data,"norm")  #fitting data to normal distribution
+> par(mfrow=c(2,2))
+> plot.legend<-c("unif","norm")
+> denscomp(list(fu,fn),legendtext = plot.legend)
+Histogram and theoretical densities graph thus plotted do not give satisfactory results as both these distributions do not fit the data well. Hence our data has been taken randomly.
+The code for obtaining the measures of central tendency, dispersion and moments goes as follows:
+> quantile(myfile$data)   #for quartiles
+  0%  25%  50%  75% 100% 
+   1    3    5    6    7 
+> max(myfile$data)-min(myfile$data)   #for range
+[1] 6
+> sd(myfile$data)   #for standard deviation
+[1] 1.711221
+> var(myfile$data)  #for variance
+[1] 2.928278
+moment(myfile$data,order=2,center=TRUE)  #central moment of order 2 same as variance
+[1] 2.927566
+> moment(myfile$data,order=3,center=TRUE) #central moment of order 3 being negative
+[1] -1.885705
+> moment(myfile$data,order=4,center=TRUE) #central moment of order 4
+[1] 18.94543
+
