@@ -1,2 +1,306 @@
 week3
+
+Day1:
+
+import pandas as pd
+import numpy as np
+
+#read the data
+df = pd.read_excel("/content/drive/MyDrive/do well/week3/Week 3 Data.xlsx", header = 1 )
+print(df.shape)
+df.head(5)
+
+#save the data to csv form
+df.to_csv("/content/drive/MyDrive/do well/week3/week3_data.csv")
+
+df= pd.read_csv("/content/drive/MyDrive/do well/week3/week3_data.csv",  header = 0)
+
+df = df.rename(columns = {"Days":"Students"})
+df =  df.drop("Unnamed: 0", axis = 1 ) # dropping the column ("Unnamed: 0")
+print("Shape pf the Dataset : ",df.shape)
+df.head()
+
+
+##to get further details of the data type for each variable in our dataset.
+df.info()
+result
+ class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1000 entries, 0 to 999
+Data columns (total 16 columns):
+ #   Column    Non-Null Count  Dtype  
+---  ------    --------------  -----  
+ 0   Students  1000 non-null   int64  
+ 1   M         1000 non-null   int64  
+ 2   T         1000 non-null   int64  
+ 3   W         1000 non-null   int64  
+ 4   TH        1000 non-null   int64  
+ 5   F         1000 non-null   int64  
+ 6   M.1       1000 non-null   int64  
+ 7   T.1       1000 non-null   int64  
+ 8   W.1       1000 non-null   int64  
+ 9   TH.1      1000 non-null   int64  
+ 10  F.1       1000 non-null   int64  
+ 11  M.2       813 non-null    float64
+ 12  T.2       817 non-null    float64
+ 13  W.2       834 non-null    float64
+ 14  TH.2      826 non-null    float64
+ 15  F.2       824 non-null    float64
+dtypes: float64(5), int64(11)
+memory usage: 125.1 KB
+
+
+Basic Stastical description
+
+    checks the median
+    mode
+    mean
+    std(standard deviation)
+    max value
+    and other stastical properties of the dataset
+#Basic stastical description
+df.describe()
+result 
+ 	Students 	M 	T 	W 	TH 	F 	M.1 	T.1 	W.1 	TH.1 	F.1 	M.2 	T.2 	W.2 	TH.2 	F.2
+count 	1000.000000 	1000.000000 	1000.000000 	1000.000000 	1000.000000 	1000.000000 	1000.000000 	1000.000000 	1000.000000 	1000.000000 	1000.000000 	813.000000 	817.000000 	834.000000 	826.000000 	824.000000
+mean 	500.500000 	3.075000 	3.739000 	4.258000 	5.133000 	6.011000 	2.931000 	3.634000 	4.512000 	5.080000 	5.950000 	3.092251 	3.943696 	4.696643 	5.566586 	6.108010
+std 	288.819436 	1.424572 	1.230607 	0.972822 	1.083737 	1.215877 	1.436071 	1.236759 	1.295196 	1.061474 	1.207045 	1.393193 	1.440575 	1.264650 	1.363968 	1.148398
+min 	1.000000 	1.000000 	1.000000 	1.000000 	1.000000 	1.000000 	1.000000 	1.000000 	1.000000 	1.000000 	1.000000 	1.000000 	1.000000 	1.000000 	1.000000 	1.000000
+25% 	250.750000 	2.000000 	3.000000 	4.000000 	4.000000 	5.000000 	2.000000 	3.000000 	3.000000 	4.000000 	5.000000 	2.000000 	3.000000 	4.000000 	5.000000 	5.000000
+50% 	500.500000 	3.000000 	4.000000 	5.000000 	6.000000 	6.000000 	3.000000 	4.000000 	5.000000 	5.000000 	6.000000 	3.000000 	4.000000 	5.000000 	6.000000 	7.000000
+75% 	750.250000 	4.000000 	5.000000 	5.000000 	6.000000 	7.000000 	4.000000 	5.000000 	6.000000 	6.000000 	7.000000 	4.000000 	5.000000 	6.000000 	7.000000 	7.000000
+max 	1000.000000 	5.000000 	5.000000 	5.000000 	6.000000 	7.000000 	5.000000 	5.000000 	6.000000 	6.000000 	7.000000 	5.000000 	6.000000 	6.000000 	7.000000 	7.000000
+
+
+Measure of Skewness
+
+    In a normal distribution, the mean divides the curve symmetrically into two equal parts at the median and the value of skewness is zero.
+
+    When a distribution is asymmetrical the tail of the distribution is skewed to one side-to the right or to the left.
+
+    When the value of the skewness is negative, the tail of the distribution is longer towards the left hand side of the curve.
+
+    When the value of the skewness is positive, the tail of the distribution is longer towards the right hand side of the curve
+
+
+df.skew()
+result
+
+Students    0.000000
+M          -0.065773
+T          -0.433057
+W          -1.097004
+TH         -1.235211
+F          -1.266516
+M.1         0.072407
+T.1        -0.299664
+W.1        -0.343609
+TH.1       -0.980083
+F.1        -1.074264
+M.2        -0.074792
+T.2        -0.049237
+W.2        -0.571917
+TH.2       -0.683341
+F.2        -1.418442
+dtype: float64
+
+
+    A skewness value of 0 in the output denotes a symmetrical distribution of values in row 1.
+    
+    A negative skewness value in the output indicates an asymmetry in the distribution corresponding to rows and the tail is larger towards the left hand side of the distribution.
+    
+    A positive skewness value in the output indicates an asymmetry in the distribution corresponding to row ("M.1") and the tail is larger towards the right hand side of the distribution.
+
+\
+
+
+measure of kurtosis
+
+    Kurtosis is one of the two measures that quantify shape of a distribution. kutosis determine the volume of the outlier
+
+    Kurtosis describes the peakedness of the distribution.
+
+    If the distribution is tall and thin it is called a leptokurtic distribution(Kurtosis > 3). Values in a leptokurtic distribution are near the mean or at the extremes.
+
+    A flat distribution where the values are moderately spread out (i.e., unlike leptokurtic) is called platykurtic(Kurtosis <3) distribution.
+
+    A distribution whose shape is in between a leptokurtic distribution and a platykurtic distribution is called a mesokurtic(Kurtosis=3) distribution. A mesokurtic distribution looks more close to a normal distribution.
+
+    Kurtosis is sometimes reported as “excess kurtosis.” Excess kurtosis is determined by subtracting 3 from the kurtosis. This makes the normal distribution kurtosis equal 0.
+
+
+
+
+    High kurtosis in a data set is an indicator that data has heavy outliers.
+
+    Low kurtosis in a data set is an indicator that data has lack of outliers.
+
+    If kurtosis value + means pointy and — means flat.
+
+df.kurtosis()
+result
+Students   -1.200000
+M          -1.305880
+T          -1.170964
+W           0.405842
+TH          1.207742
+F           1.366346
+M.1        -1.321019
+T.1        -1.269884
+W.1        -0.951474
+TH.1        0.445306
+F.1         0.738511
+M.2        -1.251628
+T.2        -1.124644
+W.2        -0.637846
+TH.2       -0.148988
+F.2         2.093018
+dtype: float64
+
+
+Day 2 
+
+graphical repersentation
+
+Graphical Repersentation of our Dataset
+data = df.rename(columns={'Students':'Student', 'M':"M1", 'T': "T1", 'W':"W1", 'TH':"TH1", 'F':"F1", 'M.1':"M2", 'T.1':"T2", 'W.1':"W2", 'TH.1':"TH2",
+       'F.1':"F2", 'M.2':'M3', 'T.2':"T3", 'W.2':"W3", 'TH.2':"TH3", 'F.2':"F3"})
+       
+ import matplotlib.pyplot as plt
+tran.hist()
+
+plt.tight_layout()
+
+
+observed that :  the performance of the students were good  on fridaya of every week
+moday the lower performance
+and the overall performance of w3 is good as compared to other weeks
+
+## kde plots
+tran.plot.kde(subplots=True, figsize=(10,15))\
+ observed that
+ same thing 
+ 
+ 
+ 
+### 
+tran.plot.box(figsize=(15,5))
+
+plt.xticks(rotation='vertical')
+
+box plot
+
+#observed that 
+very few students on friday of all week got 1-2 marks
+
+and on w1 wed 
+
+
+Day 3
+
+Treating with missing values of week 3
+I have observed that most of the data is filled sequentially
+
+    for a particular week and row
+
+    it is filled like that
+        2,3,4,5,6
+        3,3,4,4,5,5
+        2,2,3,4,4
+
+    and is filled in asscending order for the particular week.
+
+    so we will deal with imputing missing values according to that.
+# how many missing values present in the data?
+data_week_3.isnull().sum()
+
+M3     187
+T3     183
+W3     166
+TH3    174
+F3     176
+dtype: int64
+
+data_week_3.shape[0] # checking the no of rows in dataset
+
+Treatment with missing values
+
+    After observing the data we find that the missing number of data points to include closer to the missing value
+    so we use KNN imputer
+
+
+# import the KNNimputer class 
+from sklearn.impute import KNNImputer 
+# create an object for KNNImputer 
+imputer = KNNImputer(n_neighbors=5, weights='uniform', metric='nan_euclidean') 
+After_imputation = imputer.fit_transform(data_week_3) 
+
+
+data_week_3_imputed = pd.DataFrame(data = After_imputation,columns=["M3", "T3","W3", "TH3", "F3"] )
+data_week_3_imputed
+result
+ 	M3 	T3 	W3 	TH3 	F3
+0 	3.0 	4.0 	5.0 	6.0 	7.0
+1 	3.0 	4.0 	5.0 	6.0 	7.0
+2 	5.0 	6.0 	6.0 	7.0 	7.0
+3 	1.0 	2.0 	3.0 	4.0 	5.0
+4 	4.6 	6.0 	6.0 	7.0 	7.0
+... 	... 	... 	... 	... 	...
+995 	5.0 	6.0 	6.0 	6.0 	6.0
+996 	1.0 	1.0 	2.0 	2.0 	2.6
+997 	4.0 	3.4 	4.0 	5.0 	5.0
+998 	5.0 	6.0 	6.0 	7.0 	7.0
+999 	1.0 	2.0 	2.0 	2.0 	3.0
+
+
+
+data_imputed = data_week_1_2.join(data_week_3_imputed)
+data_imputed
+
+ 	Student 	M1 	T1 	W1 	TH1 	F1 	M2 	T2 	W2 	TH2 	F2 	M3 	T3 	W3 	TH3 	F3
+0 	1 	4 	5 	5 	6 	7 	1 	2 	3 	4 	5 	3.0 	4.0 	5.0 	6.0 	7.0
+1 	2 	1 	2 	3 	4 	5 	5 	5 	6 	6 	7 	3.0 	4.0 	5.0 	6.0 	7.0
+2 	3 	3 	4 	5 	6 	7 	2 	3 	4 	5 	6 	5.0 	6.0 	6.0 	7.0 	7.0
+3 	4 	1 	2 	3 	4 	5 	1 	2 	3 	4 	5 	1.0 	2.0 	3.0 	4.0 	5.0
+4 	5 	2 	3 	4 	5 	6 	5 	5 	6 	6 	7 	4.6 	6.0 	6.0 	7.0 	7.0
+... 	... 	... 	... 	... 	... 	... 	... 	... 	... 	... 	... 	... 	... 	... 	... 	...
+995 	996 	2 	3 	4 	5 	5 	1 	2 	3 	3 	3 	5.0 	6.0 	6.0 	6.0 	6.0
+996 	997 	5 	5 	5 	5 	7 	2 	2 	3 	4 	5 	1.0 	1.0 	2.0 	2.0 	2.6
+997 	998 	1 	1 	1 	2 	3 	4 	4 	4 	5 	5 	4.0 	3.4 	4.0 	5.0 	5.0
+998 	999 	1 	1 	2 	2 	3 	1 	1 	2 	2 	2 	5.0 	6.0 	6.0 	7.0 	7.0
+999 	1000 	2 	2 	2 	2 	3 	2 	2 	3 	4 	4 	1.0 	2.0 	2.0 	2.0 	3.0
+
+1000 rows × 16 columns
+
+
+
+data_week_3_imputed.plot.box(figsize=(15,5))
+
+plt.xticks(rotation='vertical')
+
+box plot
+obserbed that very few students on wed and friday got 1-2 marks
+
+
+import matplotlib.pyplot as plt
+data_week_3_imputed.hist()
+
+plt.tight_layout()
+
+The performance of students on friday was good as compare to other days
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 >place your code here<
