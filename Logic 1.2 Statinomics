@@ -1,0 +1,30 @@
+week3
+1. Start
+    Understanding the Distribution of the Data
+    Students score low in the first days and then score high at the end
+2. Missingness present in data
+    MISSING COMPLETELY AT RANDOM (MCAR), MISSING AT RANDOM (MAR), MISSING NOT AT RANDOM.
+    Made data matrix using msno to detect pattern between filled and missing values
+    concluded that it follows MAR therefore Missing values can be filled with the observed data
+3. Imputation process for missing values
+    KNN, Iterative Imputer(MICE)
+    Compared each with Density plots and r2 score
+    Mice turns out to be best imputation method
+4.  Skewness & Kurtosis
+    Calculated four moments of data. To use for following:
+    SKEWNESS (Population), SAMPLE SKEWNESS, STANDARD  ERROR IN SKEWNESS, 95% PERCENT CONFIDENCE INTERVAL OF POPULATION SKEWNESS
+    KURTOSIS, EXCESS KURTOSIS OF POPULATION, SAMPLE EXCESS KURTOSIS, STANDARD ERROR IN KURTOSIS, TEST STATISTIC(Kurtosis)
+5.  Visualising Distribution
+    Used ECDF to show distribution of data.
+    Simulated Normal Distribution from Mean and STD of the data. To show that it follows Normal Distribution.
+5. Predicting future values
+    Used Feature Importance to calculate which of the Week 3 days contribute most for a particular day in Week 3.
+    Using the most contrabutary variables, I have predicted the data of each day for Week 4.    
+6. Quality process for imputation
+    Data matrix used to identify Missingness present in data
+    Density plots used to verify Imputation methods
+    Moments of data used to calculate Skewness and Kurtosis
+    Simulation and ECDF used to confirm the distribution of data.
+    r2 score used to prediction
+7. End
+
