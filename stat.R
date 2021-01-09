@@ -1,0 +1,28 @@
+#Identifying the distribution
+
+w1<-c(0.0476,0.0896,0.1352,0.1636,0.3254,0.1408,0.0978)
+w2<-c(0.0526,0.0976,0.1422,0.1732,0.244,0.1986,0.0918)
+w3<-c(0.0501,0.0936,0.1387,0.1684,0.2847,0.1697,0.0948)
+w4<-c(0.0478,0.0866,0.1366,0.172,0.2634,0.179,0.1146)
+wc3<-c(0.047,0.089666667,0.135866667,0.170533333,0.258133333,0.1794,0.1194)
+wc4<-c(0.0472,0.0889,0.13605,0.1709,0.25945,0.1793,0.1182)
+
+descdist(w1,discrete = FALSE)
+descdist(w2,discrete = FALSE)
+descdist(w3,discrete = FALSE)
+descdist(w4,discrete = FALSE)
+descdist(wc3,discrete = FALSE)
+descdist(wc4,discrete = FALSE)
+
+a<-fitdist(w1,"beta")
+b<-fitdist(w2, "beta")
+c<-fitdist(w3, "beta")
+d<-fitdist(w4, "beta")
+e<-fitdist(wc3,"norm")
+f<-fitdist(wc4,"norm")
+plot(a)
+plot(b)
+plot(c)
+plot(d)
+plot(e)
+plot(f)
