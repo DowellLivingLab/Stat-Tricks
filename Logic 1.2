@@ -290,17 +290,178 @@ The performance of students on friday was good as compare to other days
 
 
 
+Day 4 
+
+
+Predicted the accuracy of the missing values per day
+
+def accuracy(y_test, y_preds):
+    """Calculates inference accuracy of the model.
+    
+    Args-
+        y_test- Original target labels of the test set
+        y_preds- Predicted target lables
+    Returns-
+        acc
+    """
+    total_correct = 0
+    for i in range(len(y_test)):
+        if int(y_test[i]) == int(y_preds[i]):
+            total_correct += 1
+    acc = total_correct/len(y_test)
+    return acc
+    
+    
+    
+  data_p = data_imputed.values
+days = ["Mon","Tues","Wed","Thus","Fri"]
+print("Model accuracy of week2  data with previous weeks data : ")
+week_2_w1 = []
+for i in range(5):
+  X =data_p[:,i+1]
+  y =  data_p[:,i+5]
+  acc = accuracy(y, X)
+  week_2_w1.append(acc)
+  print(days[i], acc*100)
+  
+result
+Model accuracy of week2  data with previous weeks data : 
+Mon 3.0
+Tues 18.099999999999998
+Wed 28.199999999999996
+Thus 26.6
+Fri 16.2
 
 
 
+data_p = data_imputed.values
+days = ["Mon","Tues","Wed","Thus","Fri"]
+week_3_w2 = []
+print("Model accuracy of Imputed missing data with previous weeks data : ")
+for i in range(5):
+  X =data_p[:,i+5]
+  y =  data_p[:,i+10]
+  acc = accuracy(y, X)
+  week_3_w2.append(acc)
+  print(days[i], acc*100)
+  
+  
+result
+
+Model accuracy of Imputed missing data with previous weeks data : 
+Mon 35.9
+Tues 20.8
+Wed 21.099999999999998
+Thus 26.700000000000003
+Fri 19.1
 
 
+from statistics import mean
+
+per = (mean(week_2_w1)/mean(week_3_w2))*100
+
+print("The accuracy percenntage of our imputed value is :",per)
 
 
+  result
+  The accuracy percenntage of our imputed value is : 74.51456310679612
+  
+  
+  
+day5 
+
+Predicted the data for the next week i.e week 4
+Rearranging the data
+data_imputed = data_imputed.rename(columns = {'M1':"14/12/2020", 'T1':"15/12/2020", 'W1':"16/12/2020", 'TH1':"17/12/2020", 'F1':"18/12/2020", 'M2':"21/12/2020", 'T2':"22/12/2020", 'W2':"23/12/2020", 'TH2':"24/12/2020", 'F2':"25/12/2020",
+       'M3':"28/12/2020", 'T3':"29/12/2020", 'W3':"30/12/2020", 'TH3':"31/12/2020", 'F3':"1/1/2021"})
+
+data_imputed.head(2)
+
+dt = data_imputed.transpose()
+
+df =df.rename(columns = {"Student":"Days"})
+
+df['Days'] = pd.to_datetime(df['Days'])
+
+#creating the train and validation set
+train = data[:10]
+valid = data[10:]
 
 
+#fit the model
+from statsmodels.tsa.vector_ar.var_model import VAR
+import warnings
+warnings.filterwarnings('ignore')
+
+model = VAR(endog=train )
+model_fit = model.fit(trend='nc')
 
 
+# make prediction on validation
+prediction = model_fit.forecast(model_fit.y, steps=len(valid))
+
+#converting predictions to dataframe
+pred = pd.DataFrame(index=range(0,len(prediction)),columns=[cols])
+for j in range(0,1000):
+    for i in range(0, len(prediction)):
+       pred.iloc[i][j] = prediction[i][j]
+       
+       
+#make final predictions
+model = VAR(endog=data)
+model_fit = model.fit()
+yhat = model_fit.forecast(model_fit.y, steps=5)
+print(yhat)
+
+predicted_data = pd.DataFrame(yhat)
+
+
+##transpose the predicted Data
+t_p = predicted_data.transpose()
+
+
+##converting the datatype int float
+for i in t_p.columns:
+  t_p[i] = t_p[i].astype(int)  # converting the datatype into float
+
+t_p.head()
+
+t_p = t_p.rename(columns = {0:"M4",1:"T4",2:"W4",3:"TH4",4:"F4"})
+
+
+week_1_4 = data_imputed.join(t_p)
+
+
+data_p = week_1_4.values
+days = ["Mon","Tues","Wed","Thus","Fri"]
+week_4_3 = []
+print("Model accuracy of Imputed missing data with previous weeks data : ")
+for i in range(5):
+  X =data_p[:,i+10]
+  y =  data_p[:,i+15]
+  acc = accuracy(y, X)
+  week_4_3.append(acc)
+  print(days[i], acc*100)
+  
+  
+  
+Model accuracy of Imputed missing data with previous weeks data : 
+Mon 36.199999999999996
+Tues 2.8000000000000003
+Wed 15.4
+Thus 37.7
+Fri 35.199999999999996
+
+
+from statistics import mean
+
+per = (mean(week_3_2)/mean(week_4_3))*100
+
+print("The accuracy percenntage of our imputed value is :",per)
+results
+
+The accuracy percenntage of our imputed value is : 97.0934799685781
+ 
 
 
 >place your code here<
