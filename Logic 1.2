@@ -1,2 +1,43 @@
 week3
->place your code here<
+#Identifying the distribution
+
+w1<-c(0.0476,0.0896,0.1352,0.1636,0.3254,0.1408,0.0978)
+w2<-c(0.0526,0.0976,0.1422,0.1732,0.244,0.1986,0.0918)
+w3<-c(0.0501,0.0936,0.1387,0.1684,0.2847,0.1697,0.0948)
+w4<-c(0.0478,0.0866,0.1366,0.172,0.2634,0.179,0.1146)
+wc3<-c(0.047,0.089666667,0.135866667,0.170533333,0.258133333,0.1794,0.1194)
+wc4<-c(0.0472,0.0889,0.13605,0.1709,0.25945,0.1793,0.1182)
+
+descdist(w1,discrete = FALSE)
+descdist(w2,discrete = FALSE)
+descdist(w3,discrete = FALSE)
+descdist(w4,discrete = FALSE)
+descdist(wc3,discrete = FALSE)
+descdist(wc4,discrete = FALSE)
+
+a<-fitdist(w1,"beta")
+b<-fitdist(w2, "beta")
+c<-fitdist(w3, "beta")
+d<-fitdist(w4, "beta")
+e<-fitdist(wc3,"norm")
+f<-fitdist(wc4,"norm")
+plot(a)
+plot(b)
+plot(c)
+plot(d)
+plot(e)
+plot(f)
+
+
+#This is the method for generating scores for the 4th Week. 
+
+x<-c(1,2,3,4,5,6)
+y<-c(1,2,3,4,5,6,7)
+probM<-c(0.190666667,0.191666667,0.204666667,0.196666667,0.207333333,0.009)
+probT<-c(0.024,0.193,0.198666667,0.204333333,0.32,0.06)
+probW<-c(0.012,0.031,0.2,0.205333333,0.324,0.224333333,0.003333333)
+probTH<-c(0.005666667,0.020333333,0.041,0.203333333,0.221,0.401333333,0.107333333)
+probF<-c(0.003,0.012,0.035,0.043,0.218333333,0.202333333,0.486333333)
+F<-sample(y,1000,replace = TRUE,prob = probF)
+Stat<-matrix(data = c(M,T,W,TH,F), nrow=1000)
+write.csv(Stat, file = "WEEK4.csv")
