@@ -1,16 +1,41 @@
 #Logic for the ideation stage
 
 1. Start
+#we have used summary function to determine the number of Na's in the data given
+summary(input_data)
 
+#we also tried to fit normal distribution but it was not following its some basic properties such as the proportion of concentration of data corresponding to Z values.
+#data is not plotted as belled shape
+
+# we also tried to use the data as time series object but the main feature of multivariate time series data i.e  the variable to be co-integrated is I(1) does not fulfilled.
 
 2. Imputation process for missing values
-.
 
-# Imputation by mean method
+#we have used mean imputation, but it was not following the trend and adhering to dataset.
+#mean imputation
+(data_i$M4[which(is.na(data_i$M4))]=mean(data_i$M4,na.rm=TRUE))
+
+# imputing the missing values 
+# mice imputation using pmm method 'Predictive mean matching' 
+# we used pmm method as data doesn't follow normal distribution so this method
+#gives us an egde over regression method 
+
+my_imp<-mice(input_data[,17:21],m=5,method="pmm",maxit = 200)
+my_imp$imp$M4
+summary(input_data$M4)
+input_data[,17:21]=complete(my_imp,1)
 
 
 3. Predicting future values
 
+# prediction for the fifth week 
+#we have assumed that data of monday in week 5 will be dependent on previous weeks data.
+M5<-lm(input_data$M4~input_data$M1+input_data$M2+input_data$M3,data = input_data)
+# similarly we have computed the values for rest 4 days
+
 4. Quality process for imputation
+#we are able to see the same incresing trend in the week's data.
+#we proves the accuracy of imputation method used.
+
 5. End
 
