@@ -1,19 +1,24 @@
-1. Understanding distribution of the data. Prepare a general chart just to see if the Friday values is higher than Monday values.                                    2. Missingness present in data
-    MISSING COMPLETELY AT RANDOM (MCAR), MISSING AT RANDOM (MAR), MISSING NOT AT RANDOM.
-    Made data matrix using msno to detect pattern between filled and missing values concluded that it follows MAR therefore Missing values can be filled with the       observed data.                                                                                                                                                    3. Find all the four moments for the imputation data.                                                                 
-4. Imputation process for missing values                                                            
-    Use MICE for imputing values as MICE turns out to be the best imputation method. Also checked with density plots but r2 gives negative value so I have used I       have used Normal distribution curve as my measure because from the Kurtosis value I know none of them follow Normal distribution. But they follow leptokurtic       and playtikurtic curve
-    So the r2 value tells me how much the data is deviating from Normal distribution.         
-5. Visualizing Distribution
-    Used ECDF to show distribution of data.
-    I know it doesn’t strictly follow Normal distribution cuz of the kurtosis value though I want to know how close the data is to Normal distribution                6. For predicting future values                                                           
-    First I used PCA to form the best two variables for making clusters and I have done the clustering for weekdays and then from clusters, prediction is done of       clusters.
+1. Understanding distribution of the data. Prepare a general chart just to see if the Friday values is higher than Monday values.                                                                                       
+2. Missingness present in data
+    MISSING COMPLETELY AT RANDOM (MCAR), MISSING AT RANDOM (MAR), MISSING NOT AT RANDOM.   
+    Made data matrix using msno to detect pattern between filled and missing values concluded that it follows MAR therefore Missing values can be filled with the observed data.                                                                                                                                                                          
+3. Find all the four moments for the imputation data.                                                                 
+4. Imputation process for missing values  
+    Use MICE for imputing values as MICE turns out to be the best imputation method. 
+    Also checked with density plots but r2 gives negative value so I have used I have used Normal distribution curve as my measure because from the Kurtosis value I know none of them follow Normal distribution. 
+    But they follow leptokurtic and playtikurtic curve
+    So the r2 value tells me how much the data is deviating from Normal distribution.         
+5. Visualizing Distribution    
+    Used ECDF to show distribution of data.    
+    I know it doesn’t strictly follow Normal distribution cuz of the kurtosis value though I want to know how close the data is to Normal distribution                                                                                                    
+6. For predicting future values                                                            
+    First I used PCA to form the best two variables for making clusters and I have done the clustering for weekdays and then from clusters, prediction is done for clusters. 
+    Prediction is done Feature Importance, Random Forest and cluster Feature used for Prediction of Week 5 values.                                                                                                                                 
+7. Quality process for imputation    
+    Data matrix used to identify Missingness present in data   
+    MICE is used for Imputation     
+    Moments of data used to calculate Skewness and Kurtosis    
+    Simulation, ECDF are used to confirm the distribution of data.                             
+    Silhoutte score used to get optimal k-value. Elbow chart used to determine k-value   
+    PCA and K-means are used for prediction. 
     Feature Importance, Random Forest and cluster Feature used for Prediction of Week 5 values.
-7. Quality process for imputation
-    Data matrix used to identify Missingness present in data
-    MICE is used for Imputation 
-    Moments of data used to calculate Skewness and Kurtosis
-    Simulation, ECDF are used to confirm the distribution of data.                              
-    Silhoutte score used to get optimal k-value. Elbow chart used to determine k-value
-    PCA and K-means are used for prediction of clusters.
-    Feature Importance, Random Forest and cluster Feature used for Prediction
