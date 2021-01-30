@@ -1,1 +1,70 @@
 
+1. Read and rearrange the data
+
+2. checked the central tendency
+  . mean 
+  . median 
+  . mode
+  . percentile
+  .std
+3. find skewness & kurtosis for each day
+
+4. seperated week 5 and 6 data as the difficulty level has increased so the pattern of the marks for a particular student also changed.
+
+6. checked the central tendency
+  . mean 
+  . median 
+  . mode
+  . percentile
+  .std
+  . find skewness & kurtosis for each day
+  
+ 7. checked the values for sigma upto +,- 3
+ 
+ 8 checked the variance for each day 
+  M5     3.032533
+  T5     3.129801
+  W5     2.695206
+  TH5    2.048364
+  F5     1.463864
+  M6     2.986202
+  T6     2.361168
+  W6     1.686578
+  TH6    1.897606
+  F6     2.215600
+  
+ 9. checked the distibution using histo gram
+ 10. checked the basic statical description using box plot
+ 
+ 11. imputthe missing values using knn imputer
+   n_neighbors=2, weights="uniform
+   
+   got comparision ccuracy = 61.9
+   
+   MAE 0.46320000000000006
+   MSE 2.5957999999999997
+   RMSE 1.6111486585663037
+   
+ 12. plot the imputed data and checked the difference in distribution
+     . find that the distribution remains same
+     . compare the skewness and kutosis 
+     . find the new sigma for upto +,- 3
+     
+     
+ 13. predicted the next week data
+     for prediction we use Vector auto regression
+     
+     . first predict with the train set 
+     . And then predict with whole data
+     . also tries to predict with last previous weeks(but found no change in prediction so drop that)
+     
+     . we got accuracy == 70.31(while comparing with previous data)
+     . MSE  = 5.65
+     . checked the skewness and kurtosis
+     . plot different types of graphs (box, histo grams )
+     
+ THE END
+     
+     
+ 
+
