@@ -1,0 +1,865 @@
+# In[1]:
+
+
+#pip install missingpy
+#pip install autoimpute
+#!pip install pyts
+#!pip install impyute
+
+
+# In[2]:
+
+
+from missingpy import MissForest
+
+
+# In[3]:
+
+
+import pandas as pd
+
+
+# In[4]:
+
+
+df=pd.read_csv('Week8.csv')
+df.head()
+
+
+# In[5]:
+
+
+df1=df[['M8','T8','W8','TH8','F8']]
+
+
+# In[6]:
+
+
+df1.describe()
+
+
+# # REGRESSION
+
+# In[7]:
+
+
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
+imp_mice = IterativeImputer(n_nearest_features=5)
+df_mice=imp_mice.fit_transform(df1)
+df_mice=pd.DataFrame(df_mice,columns=df1.columns)
+df_mice.describe()
+
+
+# # RANDOM FOREST
+
+# In[8]:
+
+
+imp_rf=MissForest()
+df_rf=imp_rf.fit_transform(df1)
+df_rf=pd.DataFrame(df_rf,columns=df1.columns)
+df_rf.describe()
+
+
+# In[9]:
+
+
+from pyts.preprocessing import InterpolationImputer
+import numpy as np
+
+
+# # INTERPOLATION TECHNIQUES
+
+# In[10]:
+
+
+imp_linear=InterpolationImputer(missing_values=np.nan,strategy='linear')
+imp_nearest=InterpolationImputer(missing_values=np.nan,strategy='nearest')
+imp_quadratic=InterpolationImputer(missing_values=np.nan,strategy='quadratic')
+imp_previous=InterpolationImputer(missing_values=np.nan,strategy='previous')
+imp_next=InterpolationImputer(missing_values=np.nan,strategy='next')
+
+
+# In[11]:
+
+
+df_linear=imp_linear.transform(df1)
+df_nearest=imp_nearest.transform(df1)
+df_quadratic=imp_quadratic.transform(df1)
+df_previous=imp_previous.transform(df1)
+df_next=imp_next.transform(df1)
+
+
+# In[12]:
+
+
+df_linear=pd.DataFrame(df_linear,columns=df1.columns)
+df_linear.describe()
+
+
+# In[13]:
+
+
+df_nearest=pd.DataFrame(df_nearest,columns=df1.columns)
+df_nearest.describe()
+
+
+# In[14]:
+
+
+df_quadratic=pd.DataFrame(df_quadratic,columns=df1.columns)
+df_quadratic.describe()
+
+
+# In[15]:
+
+
+df_previous=pd.DataFrame(df_previous,columns=df1.columns)
+df_previous.describe()
+
+
+# In[16]:
+
+
+df_next=pd.DataFrame(df_next,columns=df1.columns)
+df_next.describe()
+
+
+# # MOVING AVERAGE
+
+# In[17]:
+
+
+df_moving_avg=df1.fillna(df1.rolling(6,min_periods=1).mean())
+df_moving_avg.describe()
+
+
+# In[18]:
+
+
+import impyute as impy
+
+
+# In[30]:
+
+
+df1_array=np.array(df1)
+
+
+# In[31]:
+
+
+import scipy.sparse as sp
+df1_matrix=sp.csc_matrix(df1_array)
+
+
+# # PROBABILITY DISTRIBUTION
+
+# In[34]:
+
+
+df_prob=impy.em(df1_array)
+
+
+# In[36]:
+
+
+df_em=pd.DataFrame(df_prob)
+
+
+# In[37]:
+
+
+df_em.describe()
+
+
+# In[47]:
+
+
+df_moving_avg=df_moving_avg.round(0)
+import matplotlib.pyplot as plt
+
+
+# # CLUSTERING
+
+# In[42]:
+
+
+df_Monday=[df['M1'],df['M2'],df['M3'],df['M4'],df['M5'],df['M6'],df['M7'],df_moving_avg['M8']]
+df_Monday=pd.DataFrame(df_Monday)
+df_Monday=df_Monday.T
+df_Monday
+
+
+# In[43]:
+
+
+from sklearn.decomposition import PCA
+
+# Feature matrix and target array
+X = df_Monday
+
+# PCA
+pca = PCA(n_components=2)
+
+# Fit and transform
+principalComponents = pca.fit_transform(X)
+
+# Print ratio of variance explained
+print(pca.explained_variance_ratio_)
+
+
+# In[44]:
+
+
+Monday=pd.DataFrame(principalComponents)
+
+
+# In[45]:
+
+
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+# For loop
+for n_clusters in range(2,10):
+    kmeans = KMeans(n_clusters=n_clusters)
+    # Fit and predict your k-Means object
+    preds = kmeans.fit_predict(Monday)
+    score = silhouette_score(Monday, preds, metric='euclidean')
+    print ("For n_clusters = {}, silhouette score is {})".format(n_clusters, score))
+
+
+# In[48]:
+
+
+sum_of_squared_distances = []
+
+# Create for loop
+for k in range(1,15):
+    kmeans = KMeans(n_clusters=k)
+    kmeans = kmeans.fit(Monday)
+    sum_of_squared_distances.append(kmeans.inertia_)
+
+# Plot
+plt.plot(range(1,15), sum_of_squared_distances, 'bx-')
+plt.xlabel('k')
+plt.ylabel('Sum of squared distances')
+plt.title('Elbow Method For Optimal k')
+plt.show()
+
+
+# In[49]:
+
+
+kmeans_monday=KMeans(n_clusters=3, random_state=123)
+kmeans_monday.fit(Monday)
+pred_monday=kmeans_monday.predict(Monday)
+
+
+# In[64]:
+
+
+df_moving_avg['cluster_Monday']= pred_monday
+
+
+# In[51]:
+
+
+df_Tuesday=[df['T1'],df['T2'],df['T3'],df['T4'],df['T5'],df['T6'],df['T7'],df_moving_avg['T8']]
+df_Tuesday=pd.DataFrame(df_Tuesday)
+df_Tuesday=df_Tuesday.T
+df_Tuesday
+
+
+# In[52]:
+
+
+from sklearn.decomposition import PCA
+
+# Feature matrix and target array
+X = df_Tuesday
+
+# PCA
+pca = PCA(n_components=2)
+
+# Fit and transform
+principalComponents = pca.fit_transform(X)
+
+# Print ratio of variance explained
+print(pca.explained_variance_ratio_)
+
+
+# In[53]:
+
+
+Tuesday=pd.DataFrame(principalComponents)
+
+
+# In[54]:
+
+
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+# For loop
+for n_clusters in range(2,10):
+    kmeans = KMeans(n_clusters=n_clusters)
+    # Fit and predict your k-Means object
+    preds = kmeans.fit_predict(Tuesday)
+    score = silhouette_score(Tuesday, preds, metric='euclidean')
+    print ("For n_clusters = {}, silhouette score is {})".format(n_clusters, score))
+
+
+# In[55]:
+
+
+sum_of_squared_distances = []
+
+# Create for loop
+for k in range(1,15):
+    kmeans = KMeans(n_clusters=k)
+    kmeans = kmeans.fit(Tuesday)
+    sum_of_squared_distances.append(kmeans.inertia_)
+
+# Plot
+plt.plot(range(1,15), sum_of_squared_distances, 'bx-')
+plt.xlabel('k')
+plt.ylabel('Sum of squared distances')
+plt.title('Elbow Method For Optimal k')
+plt.show()
+
+
+# In[56]:
+
+
+kmeans_tuesday=KMeans(n_clusters=4, random_state=123)
+kmeans_tuesday.fit(Tuesday)
+pred_tuesday=kmeans_tuesday.predict(Tuesday)
+
+
+# In[65]:
+
+
+df_moving_avg['cluster_Tuesday']= pred_tuesday
+
+
+# In[58]:
+
+
+df_Wednesday=[df['W1'],df['W2'],df['W3'],df['W4'],df['W5'],df['W6'],df['W7'],df_moving_avg['W8']]
+df_Wednesday=pd.DataFrame(df_Wednesday)
+df_Wednesday=df_Wednesday.T
+df_Wednesday
+
+
+# In[59]:
+
+
+from sklearn.decomposition import PCA
+
+# Feature matrix and target array
+X = df_Wednesday
+
+# PCA
+pca = PCA(n_components=2)
+
+# Fit and transform
+principalComponents = pca.fit_transform(X)
+
+# Print ratio of variance explained
+print(pca.explained_variance_ratio_)
+
+
+# In[60]:
+
+
+Wednesday=pd.DataFrame(principalComponents)
+
+
+# In[61]:
+
+
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+# For loop
+for n_clusters in range(2,10):
+    kmeans = KMeans(n_clusters=n_clusters)
+    # Fit and predict your k-Means object
+    preds = kmeans.fit_predict(Wednesday)
+    score = silhouette_score(Wednesday, preds, metric='euclidean')
+    print ("For n_clusters = {}, silhouette score is {})".format(n_clusters, score))
+
+
+# In[62]:
+
+
+sum_of_squared_distances = []
+
+# Create for loop
+for k in range(1,15):
+    kmeans = KMeans(n_clusters=k)
+    kmeans = kmeans.fit(Wednesday)
+    sum_of_squared_distances.append(kmeans.inertia_)
+
+# Plot
+plt.plot(range(1,15), sum_of_squared_distances, 'bx-')
+plt.xlabel('k')
+plt.ylabel('Sum of squared distances')
+plt.title('Elbow Method For Optimal k')
+plt.show()
+
+
+# In[63]:
+
+
+kmeans_wednesday=KMeans(n_clusters=4, random_state=123)
+kmeans_wednesday.fit(Wednesday)
+pred_wednesday=kmeans_wednesday.predict(Wednesday)
+
+
+# In[66]:
+
+
+df_moving_avg['cluster_Wednesday']= pred_wednesday
+
+
+# In[67]:
+
+
+df_Thursday=[df['TH1'],df['TH2'],df['TH3'],df['TH4'],df['TH5'],df['TH6'],df['TH7'],df_moving_avg['TH8']]
+df_Thursday=pd.DataFrame(df_Thursday)
+df_Thursday=df_Thursday.T
+df_Thursday
+
+
+# In[68]:
+
+
+from sklearn.decomposition import PCA
+
+# Feature matrix and target array
+X = df_Thursday
+
+# PCA
+pca = PCA(n_components=2)
+
+# Fit and transform
+principalComponents = pca.fit_transform(X)
+
+# Print ratio of variance explained
+print(pca.explained_variance_ratio_)
+
+
+# In[69]:
+
+
+Thursday=pd.DataFrame(principalComponents)
+
+
+# In[70]:
+
+
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+# For loop
+for n_clusters in range(2,10):
+    kmeans = KMeans(n_clusters=n_clusters)
+    # Fit and predict your k-Means object
+    preds = kmeans.fit_predict(Thursday)
+    score = silhouette_score(Thursday, preds, metric='euclidean')
+    print ("For n_clusters = {}, silhouette score is {})".format(n_clusters, score))
+
+
+# In[71]:
+
+
+sum_of_squared_distances = []
+
+# Create for loop
+for k in range(1,15):
+    kmeans = KMeans(n_clusters=k)
+    kmeans = kmeans.fit(Thursday)
+    sum_of_squared_distances.append(kmeans.inertia_)
+
+# Plot
+plt.plot(range(1,15), sum_of_squared_distances, 'bx-')
+plt.xlabel('k')
+plt.ylabel('Sum of squared distances')
+plt.title('Elbow Method For Optimal k')
+plt.show()
+
+
+# In[72]:
+
+
+kmeans_thursday=KMeans(n_clusters=2, random_state=123)
+kmeans_thursday.fit(Thursday)
+pred_thursday=kmeans_thursday.predict(Thursday)
+
+
+# In[73]:
+
+
+df_moving_avg['cluster_Thursday']= pred_thursday
+
+
+# In[74]:
+
+
+df_Friday=[df['F1'],df['F2'],df['F3'],df['F4'],df['F5'],df['F6'],df['F7'],df_moving_avg['F8']]
+df_Friday=pd.DataFrame(df_Friday)
+df_Friday=df_Friday.T
+df_Friday
+
+
+# In[75]:
+
+
+from sklearn.decomposition import PCA
+
+# Feature matrix and target array
+X = df_Friday
+
+# PCA
+pca = PCA(n_components=2)
+
+# Fit and transform
+principalComponents = pca.fit_transform(X)
+
+# Print ratio of variance explained
+print(pca.explained_variance_ratio_)
+
+
+# In[76]:
+
+
+Friday=pd.DataFrame(principalComponents)
+
+
+# In[77]:
+
+
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
+
+# For loop
+for n_clusters in range(2,10):
+    kmeans = KMeans(n_clusters=n_clusters)
+    # Fit and predict your k-Means object
+    preds = kmeans.fit_predict(Friday)
+    score = silhouette_score(Friday, preds, metric='euclidean')
+    print ("For n_clusters = {}, silhouette score is {})".format(n_clusters, score))
+
+
+# In[78]:
+
+
+sum_of_squared_distances = []
+
+# Create for loop
+for k in range(1,15):
+    kmeans = KMeans(n_clusters=k)
+    kmeans = kmeans.fit(Friday)
+    sum_of_squared_distances.append(kmeans.inertia_)
+
+# Plot
+plt.plot(range(1,15), sum_of_squared_distances, 'bx-')
+plt.xlabel('k')
+plt.ylabel('Sum of squared distances')
+plt.title('Elbow Method For Optimal k')
+plt.show()
+
+
+# In[79]:
+
+
+kmeans_friday=KMeans(n_clusters=2, random_state=123)
+kmeans_friday.fit(Friday)
+pred_friday=kmeans_friday.predict(Friday)
+
+
+# In[80]:
+
+
+df_moving_avg['cluster_Friday']= pred_friday
+
+
+# In[81]:
+
+
+from sklearn.ensemble import RandomForestRegressor
+
+
+# In[100]:
+
+
+clf_m = RandomForestRegressor()
+clf_t=RandomForestRegressor()
+clf_w=RandomForestRegressor()
+clf_th=RandomForestRegressor()
+clf_f=RandomForestRegressor()
+
+
+# In[107]:
+
+
+clf=RandomForestRegressor()
+
+
+# In[114]:
+
+
+clf_m.fit(df_moving_avg.drop('M8',axis=1),(df_moving_avg.M8))
+
+
+# In[115]:
+
+
+from sklearn.metrics import r2_score
+r2_score(df_moving_avg.M8,clf_m.predict(df_moving_avg.drop('M8',axis=1)))
+
+
+# In[90]:
+
+
+df_moving_avg
+
+
+# # PREDICTION
+
+# In[125]:
+
+
+clf_t.fit(df_moving_avg.drop('T8',axis=1),(df_moving_avg.T8))
+
+
+# In[126]:
+
+
+from sklearn.metrics import r2_score
+r2_score(df_moving_avg.T8,clf_t.predict(df_moving_avg.drop('T8',axis=1)))
+
+
+# In[127]:
+
+
+clf_w.fit(df_moving_avg.drop('W8',axis=1),(df_moving_avg.W8))
+
+
+# In[128]:
+
+
+from sklearn.metrics import r2_score
+r2_score(df_moving_avg.W8,clf_w.predict(df_moving_avg.drop('W8',axis=1)))
+
+
+# In[129]:
+
+
+clf_th.fit(df_moving_avg.drop('TH8',axis=1),(df_moving_avg.TH8))
+
+
+# In[130]:
+
+
+from sklearn.metrics import r2_score
+r2_score(df_moving_avg.TH8,clf_th.predict(df_moving_avg.drop('TH8',axis=1)))
+
+
+# In[131]:
+
+
+clf_f.fit(df_moving_avg.drop('F8',axis=1),(df_moving_avg.F8))
+
+
+# In[132]:
+
+
+from sklearn.metrics import r2_score
+r2_score(df_moving_avg.F8,clf_f.predict(df_moving_avg.drop('F8',axis=1)))
+
+
+# In[133]:
+
+
+M=clf_m.predict(df_moving_avg.drop('M8',axis=1))
+T=clf_t.predict(df_moving_avg.drop('T8',axis=1))
+W=clf_w.predict(df_moving_avg.drop('W8',axis=1))
+TH=clf_th.predict(df_moving_avg.drop('TH8',axis=1))
+F=clf_f.predict(df_moving_avg.drop('F8',axis=1))
+
+
+# In[134]:
+
+
+a=[M,T,W,TH,F]
+b=pd.DataFrame(a)
+b_final=b.round(0)
+c=b_final.T
+c
+
+
+# In[135]:
+
+
+c.to_excel('Week9_pred.xlsx')
+
+
+# In[136]:
+
+
+df_moving_avg.to_excel('Week8_imp.xlsx')
+
+
+# In[141]:
+
+
+Binomial_data=df_moving_avg[['M8','T8','W8','TH8','F8']].T
+
+
+# In[142]:
+
+
+import seaborn as sns
+
+
+# # BINOMIAL DISTRIBUTION
+
+# In[143]:
+
+
+for i in Binomial_data:
+    plt.figure()
+    sns.distplot(Binomial_data[i],kde=True)
+
+
+# In[149]:
+
+
+Bi_mean=Binomial_data.mean()
+
+
+# # BINOMIAL TREND
+
+# In[150]:
+
+
+Bi_mean.plot.line()
+
+
+# In[144]:
+
+
+distribution=pd.read_excel('Week8_distribution.xlsx')
+
+
+# In[151]:
+
+
+Po_mean=distribution.mean()
+
+
+# In[171]:
+
+
+a=np.array(Po_mean)
+Po_plot=pd.DataFrame(a)
+
+
+# # POISSON TREND
+
+# In[170]:
+
+
+plt.boxplot(distribution)
+
+
+# # POISSON DISTRIBUTION
+
+# In[172]:
+
+
+for i in distribution:
+    plt.figure()
+    sns.distplot(distribution[i],kde=True)
+
+
+# In[173]:
+
+
+df1.isnull().sum()
+
+
+# # BERNOULLI DISTRIBUTION
+
+# In[174]:
+
+
+fig = plt.figure()
+ax = fig.add_axes([0,0,1,1])
+langs = ['Present','Absent']
+students = [0.83,0.17]
+ax.bar(langs,students)
+plt.title('Monday')
+plt.show()
+
+
+# In[175]:
+
+
+from scipy.stats import norm
+
+
+# In[176]:
+
+
+df_Monday=[df['M1'],df['M2'],df['M3'],df['M4'],df['M5'],df['M6'],df['M7']]
+df_m1=np.array(df_Monday)
+df_m1.mean(),df_m1.std()
+
+
+# # NORMAL DISTRIBUTION
+
+# In[177]:
+
+
+Normal_Monday=norm.rvs(size=1000,loc=3.3,scale=1.6)
+sns.distplot(Normal_Monday,kde=True)
+plt.title('Monday')
+
+
+# In[178]:
+
+
+df_Monday=[df['M1'],df['M2'],df['M3'],df['M4'],df['M5'],df['M6'],df['M7'],df_moving_avg['M8']]
+df_m1=np.array(df_Monday)
+df_m1.mean(),df_m1.std()
+
+
+# In[180]:
+
+
+Normal_Monday=norm.rvs(size=1000,loc=3.32,scale=1.61)
+sns.distplot(Normal_Monday,kde=True)
+plt.title('Monday')
+
+
+# In[179]:
+
+
+df_Monday=[df['M1'],df['M2'],df['M3'],df['M4'],df['M5'],df['M6'],df['M7'],df_moving_avg['M8'],c[0]]
+df_m1=np.array(df_Monday)
+df_m1.mean(),df_m1.std()
+
+
+# In[181]:
+
+
+Normal_Monday=norm.rvs(size=1000,loc=3.33,scale=1.6)
+sns.distplot(Normal_Monday,kde=True)
+plt.title('Monday')
+
